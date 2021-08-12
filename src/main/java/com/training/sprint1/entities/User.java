@@ -3,8 +3,6 @@ package com.training.sprint1.entities;
 
 
 
-import java.math.BigInteger;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -12,19 +10,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Users")
 public class User {
-private BigInteger userId;
+private Long userId;
 private String userType;
 private String userName;
 private String password;
 private String email;
-private String mobileNumber;
+private Long mobileNumber;
 
 
 public User() {
 	super();
 }
 
-public User(String userType, String userName, String password, String email, String mobileNumber) {
+public User(String userType, String userName, String password, String email, Long mobileNumber) {
 	super();
 	this.userType = userType;
 	this.userName = userName;
@@ -33,7 +31,7 @@ public User(String userType, String userName, String password, String email, Str
 	this.mobileNumber = mobileNumber;
 }
 
-public User(BigInteger userId, String userType, String userName, String password, String email, String mobileNumber) {
+public User(Long userId, String userType, String userName, String password, String email, Long mobileNumber) {
 	super();
 	this.userId = userId;
 	this.userType = userType;
@@ -42,16 +40,16 @@ public User(BigInteger userId, String userType, String userName, String password
 	this.email = email;
 	this.mobileNumber = mobileNumber;
 }
-public String getMobileNumber() {
+public Long getMobileNumber() {
 	return mobileNumber;
 }
-public void setMobileNumber(String mobileNumber) {
+public void setMobileNumber(Long mobileNumber) {
 	this.mobileNumber = mobileNumber;
 }
-public BigInteger getUserId() {
+public Long getUserId() {
 	return userId;
 }
-public void setUserId(BigInteger userId) {
+public void setUserId(Long userId) {
 	this.userId = userId;
 }
 public String getUserType() {
