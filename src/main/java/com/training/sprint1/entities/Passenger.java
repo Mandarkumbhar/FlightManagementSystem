@@ -1,6 +1,6 @@
 package com.training.sprint1.entities;
 
-import java.math.BigInteger;
+
 
 import javax.persistence.Entity;
 
@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 public class Passenger {
 	
 	//Data Members
-private BigInteger pnrNumber;
+private Long pnrNumber;
 private String passengerName;
 private int age;
-private BigInteger passengerUIN;
+private Long passengerUIN;
 private Double luggage;
 
 	//Constructors
@@ -21,7 +21,7 @@ private Double luggage;
 	super();
 }
 	
-	public Passenger(BigInteger pnrNumber, String passengerName, int age, BigInteger passengerUIN, Double luggage) {
+	public Passenger(Long pnrNumber, String passengerName, int age, Long passengerUIN, Double luggage) {
 	super();
 	this.pnrNumber = pnrNumber;
 	this.passengerName = passengerName;
@@ -32,10 +32,10 @@ private Double luggage;
 	
 	
 //Getters Setters
-public BigInteger getPnrNumber() {
+public Long getPnrNumber() {
 	return pnrNumber;
 }
-public void setPnrNumber(BigInteger pnrNumber) {
+public void setPnrNumber(Long pnrNumber) {
 	this.pnrNumber = pnrNumber;
 }
 public String getPassengerName() {
@@ -50,10 +50,10 @@ public int getAge() {
 public void setAge(int age) {
 	this.age = age;
 }
-public BigInteger getPassengerUIN() {
+public Long getPassengerUIN() {
 	return passengerUIN;
 }
-public void setPassengerUIN(BigInteger passengerUIN) {
+public void setPassengerUIN(Long passengerUIN) {
 	this.passengerUIN = passengerUIN;
 }
 public Double getLuggage() {

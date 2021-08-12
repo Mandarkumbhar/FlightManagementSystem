@@ -1,6 +1,6 @@
 package com.training.sprint1.entities;
 
-import java.math.BigInteger;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 public class Booking {
 	
 	//Data Members
-	
-private BigInteger bookingId;
+
+private Long bookingId;
 private User userId;
 private LocalDate bookingDate;
 private List <Passenger>passengerList;
@@ -21,7 +21,7 @@ private int noOfPassangers;
 
 	//Constructors
 
-public Booking(BigInteger bookingId, User userId, LocalDate bookingDate, List<Passenger> passengerList,
+public Booking(Long bookingId, User userId, LocalDate bookingDate, List<Passenger> passengerList,
 		double ticketCost, Flight flight, int noOfPassangers) {
 	super();
 	this.bookingId = bookingId;
@@ -33,16 +33,29 @@ public Booking(BigInteger bookingId, User userId, LocalDate bookingDate, List<Pa
 	this.noOfPassangers = noOfPassangers;
 }
 
+
+	public Booking(User userId, LocalDate bookingDate, List<Passenger> passengerList, double ticketCost, Flight flight,
+			int noOfPassangers) {
+		super();
+		this.userId = userId;
+		this.bookingDate = bookingDate;
+		this.passengerList = passengerList;
+		this.ticketCost = ticketCost;
+		this.flight = flight;
+		this.noOfPassangers = noOfPassangers;
+	}
+
+
 	public Booking() {
 	super();
 }
 
 	//Getters Setters
 	
-public BigInteger getBookingId() {
+public Long getBookingId() {
 	return bookingId;
 }
-public void setBookingId(BigInteger bookingId) {
+public void setBookingId(Long bookingId) {
 	this.bookingId = bookingId;
 }
 public User getUserId() {
