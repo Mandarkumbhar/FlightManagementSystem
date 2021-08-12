@@ -1,7 +1,12 @@
 package com.training.sprint1.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name = "fms_airport")
 public class Airport {
-	
+	@Id
 	private Long airportid;
 	private String airportName;
 	private String airportLocation;

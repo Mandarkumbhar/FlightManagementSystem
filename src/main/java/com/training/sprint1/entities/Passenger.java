@@ -3,12 +3,18 @@ package com.training.sprint1.entities;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "fms_passenger")
 public class Passenger {
 	
-	//Data Members
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)	
 private Long pnrNumber;
 private String passengerName;
 private int age;

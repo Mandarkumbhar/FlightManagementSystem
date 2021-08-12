@@ -1,15 +1,20 @@
 package com.training.sprint1.entities;
 
-import java.math.BigInteger;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "fms_flight")
 public class Flight {
 	
 	//Data Members
-	
-private BigInteger flightId;
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)	
+private Long flightId;
 private String carrierName;
 private String flightModel;
 private int seatCapacity;
@@ -20,7 +25,7 @@ private int seatCapacity;
 	super();
 }
 	
-	public Flight(BigInteger flightId, String carrierName, String flightModel, int seatCapacity) {
+	public Flight(Long flightId, String carrierName, String flightModel, int seatCapacity) {
 	super();
 	this.flightId = flightId;
 	this.carrierName = carrierName;
@@ -30,10 +35,10 @@ private int seatCapacity;
 	
 	//Getters Setters
 	
-public BigInteger getFlightId() {
+public Long getFlightId() {
 	return flightId;
 }
-public void setFlightId(BigInteger flightId) {
+public void setFlightId(Long flightId) {
 	this.flightId = flightId;
 }
 public String getCarrierName() {

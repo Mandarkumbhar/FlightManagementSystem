@@ -2,8 +2,13 @@ package com.training.sprint1.entities;
 
 import java.time.LocalTime;
 
+import javax.persistence.Embeddable;
+import javax.persistence.OneToOne;
+@Embeddable
 public class Schedule {
+	@OneToOne
    private Airport sourceAirport;
+	@OneToOne
    private Airport destinationAirport;
    private LocalTime arraivalTime;
    private LocalTime departureTime;
