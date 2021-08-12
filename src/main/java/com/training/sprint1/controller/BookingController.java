@@ -12,53 +12,54 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.training.sprint1.entities.User;
+import com.training.sprint1.entities.Booking;
 import com.training.sprint1.exception.RecordAlreadyPresentException;
 import com.training.sprint1.exception.RecordNotFoundException;
-import com.training.sprint1.service.IUserService;
+import com.training.sprint1.service.IBookingService;
 
 
 
 
 
 @RestController
-@RequestMapping("/UserOperations")
-public class UserController {
+@RequestMapping("/Booking")
+public class BookingController {
 
-	@Autowired
-	IUserService userService;
+	@Autowired(required= true)
+	IBookingService bookingService;
 
-	@PostMapping("/addUser")
+	@PostMapping("/addBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public void addUser(@RequestBody User newUser) {
+	public void addBooking(@RequestBody Booking newBooking) {
 
-		userService.addUser(newUser);
+		bookingService.addBooking(newBooking);
 	}
 
-	@GetMapping("/viewUsers")
-	public Iterable<User> readAllUsers() {
+	@GetMapping("/viewBooking")
+	public Iterable<Booking> viewBookings() {
 
-		return userService.viewUser();
+		return bookingService.viewBooking();
 	}
 
-	@PutMapping("/updateUser")
+	@PutMapping("/updateBooking")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void updateUser(@RequestBody User updateUser) {
+	public void modifyBooking(@RequestBody Booking modifyBooking) {
 
-		userService.updateUser(updateUser);
+		bookingService.modifyBooking(modifyBooking);
 	}
 
-	@GetMapping("/searchUser/{id}")
+	@GetMapping("/searchBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<?> searchUserByID(@PathVariable("id") long userId) {
+	public ResponseEntity<?> searchBookingByID(@PathVariable("id") long bookingId) {
 
-		return userService.findUserById(userId);
+		return bookingService.findBookingById(bookingId);
 	}
 
-	@DeleteMapping("/deleteUser/{id}")
+	@DeleteMapping("/deleteBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void deleteBookingByID(@PathVariable("id") long userId) {
+	public void deleteBookingByID(@PathVariable("id") long bookingId) {
 
-		userService.deleteUser(userId);
+		bookingService.deleteBooking(bookingId);
 	}
 }
+
