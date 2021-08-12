@@ -4,6 +4,7 @@ public class ScheduledFlight {
  private Flight flight;
  private Integer availableSeats;
  private Schedule schedule;
+ 
 public ScheduledFlight() {
 
 }
