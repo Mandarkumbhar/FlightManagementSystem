@@ -15,7 +15,7 @@ private String userType;
 private String userName;
 private String password;
 private String email;
-private Long mobileNumber;
+private long mobileNumber;
 
 
 public User() {
