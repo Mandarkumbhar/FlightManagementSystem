@@ -7,40 +7,40 @@ import javax.persistence.Table;
 @Table(name = "fms_airport")
 public class Airport {
 	@Id
-	private Long airportid;
-	private String airportName;
-	private String airportLocation;
+	private Long id;
+	private String name;
+	private String location;
 	public Airport() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Airport(String airportName, String airportLocation) {
+	public Airport(Long id, String name, String location) {
 		super();
-		this.airportName = airportName;
-		this.airportLocation = airportLocation;
+		this.id = id;
+		this.name = name;
+		this.location = location;
 	}
-	public Long getAirportid() {
-		return airportid;
+	public Long getId() {
+		return id;
 	}
-	public void setAirportid(Long airportid) {
-		this.airportid = airportid;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getAirportName() {
-		return airportName;
+	public String getName() {
+		return name;
 	}
-	public void setAirportName(String airportName) {
-		this.airportName = airportName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getAirportLocation() {
-		return airportLocation;
+	public String getLocation() {
+		return location;
 	}
-	public void setAirportLocation(String airportLocation) {
-		this.airportLocation = airportLocation;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	@Override
 	public String toString() {
-		return "Airport [airportid=" + airportid + ", airportName=" + airportName + ", airportLocation="
-				+ airportLocation + "]";
+		return "Airport [id=" + id + ", name=" + name + ", location=" + location + "]";
 	}
 	
 	

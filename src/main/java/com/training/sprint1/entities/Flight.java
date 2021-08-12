@@ -60,6 +60,12 @@ public void setSeatCapacity(int seatCapacity) {
 	this.seatCapacity = seatCapacity;
 }
 
+@Override
+public String toString() {
+	return "Flight [flightId=" + flightId + ", carrierName=" + carrierName + ", flightModel=" + flightModel
+			+ ", seatCapacity=" + seatCapacity + "]";
+}
+
 
 
 }

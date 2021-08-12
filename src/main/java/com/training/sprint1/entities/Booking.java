@@ -29,7 +29,7 @@ private LocalDate bookingDate;
 @OneToMany
 private List <Passenger>passengerList;
 private double ticketCost;
-@OneToOne
+@ManyToOne
 private ScheduledFlight scheduledFlight;
 private int noOfPassangers;
 

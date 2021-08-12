@@ -45,6 +45,11 @@ public LocalTime getDepartureTime() {
 public void setDepartureTime(LocalTime departureTime) {
 	this.departureTime = departureTime;
 }
+@Override
+public String toString() {
+	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", arraivalTime="
+			+ arraivalTime + ", departureTime=" + departureTime + "]";
+}
 
    
 }
