@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.sprint1.entities.Airport;
 import com.training.sprint1.entities.Flight;
 import com.training.sprint1.exception.FlightNotFoundException;
+import com.training.sprint1.service.IAirportService;
 import com.training.sprint1.service.IFlightService;
 
 @RestController
@@ -24,6 +26,8 @@ public class AdminController {
 	
 	@Autowired
 	private IFlightService service;
+	
+	private IAirportService service1;
 	
 	@GetMapping("/flights")
 	public ResponseEntity<List<Flight>> viewAllFlights() {
@@ -34,13 +38,22 @@ public class AdminController {
 		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
 	}
 	
-	@GetMapping("/flights/{flightId}")
-	public ResponseEntity<Flight> viewFlight(@PathVariable Long flightId) throws FlightNotFoundException {
-		Flight flight = service.viewFlight(flightId);
-		if(flight == null) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+	@GetMapping("/airports")
+	public ResponseEntity<List<Airport>> viewAirport() {
+		List<Airport> airport = service1.viewAirport();
+		if(airport.isEmpty()) {
+			return new ResponseEntity("Airport not found", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+		return new ResponseEntity<List<Airport>>(airport, HttpStatus.OK);
+	}
+	
+	@GetMapping("/airport/{airportId}")
+	public ResponseEntity<Airport> viewFlight(@PathVariable Long airportId){
+		Airport airport = service1.viewAirportById(airportId);
+		if(airport == null) {
+			return new ResponseEntity("Airport not found", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 	
 	@PostMapping("/flights")
