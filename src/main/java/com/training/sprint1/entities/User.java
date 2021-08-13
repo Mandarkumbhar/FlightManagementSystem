@@ -45,6 +45,32 @@ public User(Role role, String userName, String password, String email, Long mobi
 }
 
 
+
+
+public User(Long id, Role role, String userName, String password, String email, Long mobileNumber,
+		List<Booking> bookings) {
+	super();
+	this.id = id;
+	this.role = role;
+	this.userName = userName;
+	this.password = password;
+	this.email = email;
+	this.mobileNumber = mobileNumber;
+	this.bookings = bookings;
+}
+
+
+
+public User(Role role, String userName, String password, String email, Long mobileNumber) {
+	super();
+	this.role = role;
+	this.userName = userName;
+	this.password = password;
+	this.email = email;
+	this.mobileNumber = mobileNumber;
+}
+
+
 public Long getId() {
 	return id;
 }

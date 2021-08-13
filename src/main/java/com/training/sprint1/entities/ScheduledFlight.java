@@ -29,6 +29,16 @@ public ScheduledFlight() {
 
 }
 
+
+public ScheduledFlight(Long scheduledFlightIdLong, List<Flight> flight, Integer availableSeats, Schedule schedule) {
+	super();
+	this.scheduledFlightIdLong = scheduledFlightIdLong;
+	this.flight = flight;
+	this.availableSeats = availableSeats;
+	this.schedule = schedule;
+}
+
+
 public ScheduledFlight(List<Flight> flight, Integer availableSeats, Schedule schedule) {
 	super();
 	this.flight = flight;

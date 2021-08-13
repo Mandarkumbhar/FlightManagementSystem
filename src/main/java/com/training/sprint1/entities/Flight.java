@@ -33,6 +33,14 @@ private int seatCapacity;
 	this.seatCapacity = seatCapacity;
 }
 	
+	
+	public Flight(String carrierName, String flightModel, int seatCapacity) {
+		super();
+		this.carrierName = carrierName;
+		this.flightModel = flightModel;
+		this.seatCapacity = seatCapacity;
+	}
+
 	//Getters Setters
 	
 public Long getFlightId() {

@@ -1,5 +1,6 @@
 package com.training.sprint1.entities;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Embeddable;
@@ -10,17 +11,23 @@ public class Schedule {
    private Airport sourceAirport;
 	@OneToOne
    private Airport destinationAirport;
+	private LocalDate date;
    private LocalTime arraivalTime;
    private LocalTime departureTime;
 public Schedule() {
 	
 }
-public Schedule(Airport sourceAirport, Airport destinationAirport, LocalTime arraivalTime, LocalTime departureTime) {
+
+public Schedule(Airport sourceAirport, Airport destinationAirport, LocalDate date, LocalTime arraivalTime,
+		LocalTime departureTime) {
+	super();
 	this.sourceAirport = sourceAirport;
 	this.destinationAirport = destinationAirport;
+	this.date = date;
 	this.arraivalTime = arraivalTime;
 	this.departureTime = departureTime;
 }
+
 public Airport getSourceAirport() {
 	return sourceAirport;
 }
@@ -45,11 +52,21 @@ public LocalTime getDepartureTime() {
 public void setDepartureTime(LocalTime departureTime) {
 	this.departureTime = departureTime;
 }
+
+public LocalDate getDate() {
+	return date;
+}
+
+public void setDate(LocalDate date) {
+	this.date = date;
+}
+
 @Override
 public String toString() {
-	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", arraivalTime="
-			+ arraivalTime + ", departureTime=" + departureTime + "]";
+	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", date=" + date
+			+ ", arraivalTime=" + arraivalTime + ", departureTime=" + departureTime + "]";
 }
+
 
    
 }
