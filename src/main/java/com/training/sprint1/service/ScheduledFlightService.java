@@ -61,15 +61,17 @@ public class ScheduledFlightService implements IScheduledFlightService{
 	
 	@Override
 	public List<ScheduledFlight> viewAllScheduledFlightsByDate(LocalDate date) {
+		List<ScheduledFlight> scheduledFlightsByDate = flightRepository.findByScheduleScheduleDate(date);
 		
-		return flightRepository.findByScheduleScheduleDate(date);
+		return scheduledFlightsByDate;
 	}
 
 	@Override
 	public List<ScheduledFlight> viewAllScheduledFlightsByAriportAndDate(Airport sourceAirport,
 			Airport destenationAirport, LocalDate date) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ScheduledFlight> sList = flightRepository.findByScheduleSourceAirportIdAndScheduleDestinationAirportIdAndScheduleScheduleDate(sourceAirport.getId(), destenationAirport.getId(), date);
+		System.out.println(sList);
+		return sList;
 	}
 
 	

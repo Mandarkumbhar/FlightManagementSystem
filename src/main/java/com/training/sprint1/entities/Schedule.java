@@ -5,6 +5,9 @@ import java.time.LocalTime;
 
 import javax.persistence.Embeddable;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 @Embeddable
 public class Schedule {
 	@OneToOne
@@ -12,8 +15,11 @@ public class Schedule {
 	@OneToOne
    private Airport destinationAirport;
 	private LocalDate scheduleDate;
+	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
    private LocalTime arraivalTime;
+	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
    private LocalTime departureTime;
+   
 public Schedule() {
 	
 }
@@ -26,6 +32,7 @@ public Schedule(Airport sourceAirport, Airport destinationAirport, LocalDate sch
 	this.scheduleDate = scheduleDate;
 	this.arraivalTime = arraivalTime;
 	this.departureTime = departureTime;
+	
 }
 
 public Airport getSourceAirport() {

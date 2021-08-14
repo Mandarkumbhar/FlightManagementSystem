@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.training.sprint1.entities.Airport;
 import com.training.sprint1.entities.Flight;
 import com.training.sprint1.entities.Schedule;
 import com.training.sprint1.entities.ScheduledFlight;
@@ -37,6 +39,8 @@ class ScheduledFlightTest {
 	
 	ScheduledFlight scheduledFlight1,scheduledFlight2,scheduledFlight3;
 	List<ScheduledFlight> scheduledFlightslList;
+	List<ScheduledFlight> scheduledFlightslListByDate;
+	List<ScheduledFlight> scheduledFlightslListByAirportAndDate;
 	Flight flight ;
 	List<Flight> flightlList;
 	Schedule schedule;
@@ -57,16 +61,30 @@ class ScheduledFlightTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		scheduledFlightslList = new ArrayList<>();
+		scheduledFlightslListByDate = new ArrayList<>();
+		scheduledFlightslListByAirportAndDate = new ArrayList<>();
 		flightlList = new ArrayList<>();
 		flight = new Flight(4554L, "Bcarrier", "Model452", 250);
 		flightlList.add(flight);
-		schedule = new Schedule(null, null, LocalDate.of(2021, 8, 25), null, null);
-		scheduledFlight1 = new ScheduledFlight(flightlList, 50,schedule );
-		scheduledFlight2 = new ScheduledFlight(flightlList, 45,schedule );
-		scheduledFlight3 = new ScheduledFlight(flightlList, 72,schedule );
+		Airport a1 = new Airport(11l, "Bombay Airlines", "Mumbai");
+		Airport a2 = new Airport(12l, "Pune Airlines", "Pune");
+		Airport a3 = new Airport(13l, "Thane Airlines", "Thane");
+		Airport a4 = new Airport(14l, "Jaipur Airlines", "Jaipur");
+		Airport a5 = new Airport(15l, "Raipur Airlines", "Raipur");
+		Airport a6 = new Airport(16l, "Bangalore Airlines", "Bangalore");
+		Schedule s1 =  new Schedule(a1, a2,LocalDate.of(2021, 8, 23) ,LocalTime.of(6, 30), LocalTime.of(7, 30));
+		Schedule s2 =  new Schedule(a3, a4, LocalDate.of(2021, 8, 23) ,LocalTime.of(8, 30), LocalTime.of(9, 00));
+		Schedule s3 =  new Schedule(a5, a6,LocalDate.of(2021, 8, 25) , LocalTime.of(4, 30), LocalTime.of(6, 00));
+		scheduledFlight1 = new ScheduledFlight(flightlList, 50,s1 );
+		scheduledFlight2 = new ScheduledFlight(flightlList, 45,s2 );
+		scheduledFlight3 = new ScheduledFlight(flightlList, 72,s3);
 		scheduledFlightslList.add(scheduledFlight1);
 		scheduledFlightslList.add(scheduledFlight2);
 		scheduledFlightslList.add(scheduledFlight3);
+		scheduledFlightslListByDate.add(scheduledFlight1);
+		scheduledFlightslListByDate.add(scheduledFlight2);
+		scheduledFlightslListByAirportAndDate.add(scheduledFlight1);
+		
 		
 	}
 	@AfterEach
@@ -102,15 +120,20 @@ class ScheduledFlightTest {
 		
 	}
 	
-	/*
-	 * @Test public void viewAllScheduledFlightByDateTest() {
-	 * when(scheduledFlightRepository.findByScheduleDate(scheduledFlight1.
-	 * getSchedule().getDate())).thenReturn(scheduledFlight1.getSchedule().getDate()
-	 * ); Assertions.assertEquals(3,
-	 * scheduledFlightService.viewAllScheduledFlights().size());
-	 * 
-	 * }
-	 */
+	
+	  @Test 
+	  public void viewAllScheduledFlightByDateTest() {
+	  when(scheduledFlightRepository.findByScheduleScheduleDate(scheduledFlight1.getSchedule().getDate())).thenReturn(scheduledFlightslListByDate); 
+	  Assertions.assertEquals(2,scheduledFlightService.viewAllScheduledFlightsByDate(scheduledFlight1.getSchedule().getDate()).size());
+	  
+	  }
+	 
+	  @Test 
+	  public void viewAllScheduledFlightByAirportAndDateTest() {
+	  when(scheduledFlightRepository.findByScheduleSourceAirportIdAndScheduleDestinationAirportIdAndScheduleScheduleDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getDate())).thenReturn(scheduledFlightslListByAirportAndDate); 
+	  Assertions.assertEquals(1,scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(scheduledFlight1.getSchedule().getSourceAirport(),scheduledFlight1.getSchedule().getDestinationAirport(),scheduledFlight1.getSchedule().getDate()).size());
+	  
+	  }
 	
 	
 }

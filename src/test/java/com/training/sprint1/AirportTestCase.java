@@ -47,10 +47,7 @@ class AirportTestCase {
 		airports.add(A4);
 		airports.add(A5);
 	}
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	
 	@Test
 	public void viewAirport(){
 		when(repo.findAll()).thenReturn(airports);
