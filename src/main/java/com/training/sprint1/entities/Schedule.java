@@ -11,19 +11,19 @@ public class Schedule {
    private Airport sourceAirport;
 	@OneToOne
    private Airport destinationAirport;
-	private LocalDate date;
+	private LocalDate scheduleDate;
    private LocalTime arraivalTime;
    private LocalTime departureTime;
 public Schedule() {
 	
 }
 
-public Schedule(Airport sourceAirport, Airport destinationAirport, LocalDate date, LocalTime arraivalTime,
+public Schedule(Airport sourceAirport, Airport destinationAirport, LocalDate scheduleDate, LocalTime arraivalTime,
 		LocalTime departureTime) {
 	super();
 	this.sourceAirport = sourceAirport;
 	this.destinationAirport = destinationAirport;
-	this.date = date;
+	this.scheduleDate = scheduleDate;
 	this.arraivalTime = arraivalTime;
 	this.departureTime = departureTime;
 }
@@ -54,16 +54,16 @@ public void setDepartureTime(LocalTime departureTime) {
 }
 
 public LocalDate getDate() {
-	return date;
+	return scheduleDate;
 }
 
-public void setDate(LocalDate date) {
-	this.date = date;
+public void setDate(LocalDate scheduleDate) {
+	this.scheduleDate = scheduleDate;
 }
 
 @Override
 public String toString() {
-	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", date=" + date
+	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", date=" + scheduleDate
 			+ ", arraivalTime=" + arraivalTime + ", departureTime=" + departureTime + "]";
 }
 

@@ -10,6 +10,6 @@ import com.training.sprint1.entities.ScheduledFlight;
 
 @Repository
 public interface IScheduledFlightRepository extends JpaRepository<ScheduledFlight, Long>{
-	List<ScheduledFlight> findByScheduleDate(LocalDate date);
+	List<ScheduledFlight> findByScheduleScheduleDate(LocalDate date);
 
 }

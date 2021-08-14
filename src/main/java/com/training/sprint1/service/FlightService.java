@@ -26,9 +26,14 @@ public class FlightService implements IFlightService{
 	}
 
 	@Override
-	public Flight viewFlight(Long flightno) throws FlightNotFoundException {
-		Optional<Flight> flight = repo.findById(flightno);
-		return flight.get();
+	public Flight viewFlight(Long flightno)  {
+		Flight f1 = null;
+		try {
+			f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
+		}catch (FlightNotFoundException fnfe) {
+			System.out.println(fnfe.getMessage());
+		}
+		return f1;
 	}
 
 	@Override
@@ -37,9 +42,15 @@ public class FlightService implements IFlightService{
 	}
 
 	@Override
-	public List<Flight> removeFlight(Long flightno) { 
+	public Flight removeFlight(Long flightno)  { 
+		Flight f1 = null;
+		try {
+			f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
+		} catch (FlightNotFoundException fnfe) {
+			System.out.println(fnfe.getMessage());
+		}
 		repo.deleteById(flightno);
-		return repo.findAll();
+		return f1;
 	}
 
 	@Override

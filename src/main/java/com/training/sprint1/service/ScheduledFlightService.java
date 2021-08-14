@@ -62,7 +62,7 @@ public class ScheduledFlightService implements IScheduledFlightService{
 	@Override
 	public List<ScheduledFlight> viewAllScheduledFlightsByDate(LocalDate date) {
 		
-		return flightRepository.findByScheduleDate(date);
+		return flightRepository.findByScheduleScheduleDate(date);
 	}
 
 	@Override

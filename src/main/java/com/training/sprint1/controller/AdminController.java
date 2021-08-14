@@ -1,5 +1,6 @@
 package com.training.sprint1.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,59 +13,66 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.sprint1.entities.Airport;
 import com.training.sprint1.entities.Flight;
+import com.training.sprint1.entities.ScheduledFlight;
 import com.training.sprint1.exception.FlightNotFoundException;
 import com.training.sprint1.service.IAirportService;
 import com.training.sprint1.service.IFlightService;
+import com.training.sprint1.service.ScheduledFlightService;
 
 @RestController
-@RequestMapping("/rest/api")
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
-	private IFlightService service;
+	private IFlightService flightService;
+	@Autowired
+	private IAirportService airportService;
 	
-	private IAirportService service1;
+	private ScheduledFlightService scheduledFlightService;
 	
-	@GetMapping("/flights")
-	public ResponseEntity<List<Flight>> viewAllFlights() {
-		List<Flight> flight = service.viewAllFlights();
-		if(flight.isEmpty()) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
-	}
 	
 	@GetMapping("/airports")
 	public ResponseEntity<List<Airport>> viewAirport() {
-		List<Airport> airport = service1.viewAirport();
+		List<Airport> airport = airportService.viewAirport();
 		if(airport.isEmpty()) {
 			return new ResponseEntity("Airport not found", HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<Airport>>(airport, HttpStatus.OK);
 	}
 	
-	@GetMapping("/airport/{airportId}")
+	
+	@GetMapping("/airports/{airportId}")
 	public ResponseEntity<Airport> viewFlight(@PathVariable Long airportId){
-		Airport airport = service1.viewAirportById(airportId);
+		Airport airport = airportService.viewAirportById(airportId);
 		if(airport == null) {
 			return new ResponseEntity("Airport not found", HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 	
+	@GetMapping("/flights")
+	public ResponseEntity<List<Flight>> viewAllFlights() {
+		List<Flight> flight = flightService.viewAllFlights();
+		if(flight.isEmpty()) {
+			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
+	}
+	
 	@PostMapping("/flights")
 	public ResponseEntity<Flight> addFlight(@RequestBody Flight f1) {
-		Flight flight = service.addFlight(f1);
+		Flight flight = flightService.addFlight(f1);
 		return new ResponseEntity<Flight>(flight, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/flights")
 	public ResponseEntity<Flight> updateFlight(@RequestBody Flight f1) {
-		Flight flight = service.updateFlight(f1);
+		Flight flight = flightService.updateFlight(f1);
 		if(flight == null) {
 			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
 		}
@@ -72,12 +80,27 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/flights/{flightId}")
-	public ResponseEntity<List<Flight>> removeFlight(@PathVariable Long flightId) {
-		List<Flight> flight = service.removeFlight(flightId);
-		if(flight.isEmpty() || flight == null) {
+	public ResponseEntity<Flight> removeFlight(@PathVariable Long flightId) {
+		Flight flight = flightService.removeFlight(flightId);
+		if( flight == null) {
 			return new ResponseEntity("Flight Id not available", HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
+		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 	
+	@GetMapping("/scheduledFlights")
+	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlights(){
+		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewAllScheduledFlights(),HttpStatus.OK);
+	}
+	
+	@PostMapping("/scheduledFlights")
+	public ResponseEntity<ScheduledFlight> addScheduledFlight(@RequestBody ScheduledFlight f1) {
+		ScheduledFlight scheduledFlight = scheduledFlightService.addFlightSchedule(f1);
+		return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/scheduledFlightsByDate")
+	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByDate(@RequestParam("date") LocalDate date){
+		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewAllScheduledFlightsByDate(date),HttpStatus.OK);
+	}
 }

@@ -1,15 +1,11 @@
 package com.training.sprint1.service;
 
 
-import java.util.Optional;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.training.sprint1.entities.User;
-import com.training.sprint1.exception.RecordAlreadyPresentException;
-import com.training.sprint1.exception.RecordNotFoundException;
+import com.training.sprint1.exception.UserNotFoundException;
 import com.training.sprint1.repository.IUserRepository;
 
 
@@ -20,65 +16,46 @@ public class UserService implements IUserService {
 	IUserRepository repo;
 	
 	@Override
-	public ResponseEntity<?> addUser(User newUser) {
-		// TODO Auto-generated method stub
-		Optional<User> findUserById = repo.findById(newUser.getId());
-		try {
-			if (!findUserById.isPresent()) {
-				repo.save(newUser);
-				return new ResponseEntity<User>(newUser, HttpStatus.OK);
-			} else
-				throw new RecordAlreadyPresentException(
-						"User with Id: " + newUser.getId() + " already exists!!");
-		} catch (RecordAlreadyPresentException e) {
-
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	public User addUser(User u) {
+		User addedUser = repo.save(u);
+		return addedUser;
+	}
+	
+	@Override
+	public User findUserById(Long Id) throws UserNotFoundException {
+		User u1 = null;
+		u1 = repo.findById(Id).orElseThrow(UserNotFoundException::new);
+		return u1;
+	}
+	
+	@Override	
+	public User updateUser(User u1) throws UserNotFoundException {
+		User u2 = null;
+		u2 = repo.findById(u1.getId()).orElseThrow(UserNotFoundException::new);
+		u2.setUserName(u1.getUserName());
+		u2.setPassword(u1.getPassword());
+		u2.setEmail(u1.getEmail());
+		u2.setMobileNumber(u1.getMobileNumber());
+		
+		User u3 = repo.save(u2);
+		return u3;	
 	}
 
-	@Override
-	public User updateUser(User updateUser) {
-		// TODO Auto-generated method stub
-		Optional<User> findUserById = repo.findById(updateUser.getId());
-		if (findUserById.isPresent()) {
-			repo.save(updateUser);
-		} else
-			throw new RecordNotFoundException(
-					"User with Id: " + updateUser.getId() + " not exists!!");
-		return updateUser;
+	
+	@Override	
+	public User deleteUser(Long Id) throws UserNotFoundException { 
+		User u2 = null;
+		u2 = repo.findById(Id).orElseThrow(UserNotFoundException::new);
+		repo.deleteById(Id);
+		return u2;
 	}
 
-	@Override
-	public String deleteUser(long userId) {
-		// TODO Auto-generated method stub
-		Optional<User> findBookingById = repo.findById(userId);
-		if (findBookingById.isPresent()) {
-			repo.deleteById(userId);
-			return "User Deleted!!";
-		} else
-			throw new RecordNotFoundException("User not found for the entered UserID");
-	}
 
 	@Override
-	public Iterable<User> viewUser() {
-		// TODO Auto-generated method stub
+	public List<User> viewAllUsers() {
 		return repo.findAll();
 	}
 
-	@Override
-	public ResponseEntity<?> findUserById(long userId) {
-		// TODO Auto-generated method stub
-		Optional<User> findById = repo.findById(userId);
-		try {
-			if (findById.isPresent()) {
-				User findUser = findById.get();
-				return new ResponseEntity<User>(findUser, HttpStatus.OK);
-			} else
-				throw new RecordNotFoundException("No record found with ID " + userId);
-		} catch (RecordNotFoundException e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
-	}
-	
+
 	
 }
