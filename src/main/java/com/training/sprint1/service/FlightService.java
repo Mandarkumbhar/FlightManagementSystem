@@ -1,8 +1,8 @@
 package com.training.sprint1.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -26,41 +26,34 @@ public class FlightService implements IFlightService{
 	}
 
 	@Override
-	public Flight viewFlight(Long flightno)  {
+	public Flight viewFlight(Long flightno) throws FlightNotFoundException {
 		Flight f1 = null;
-		try {
-			f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
-		}catch (FlightNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
-		}
+		f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
 		return f1;
 	}
 
 	@Override
-	public List<Flight> viewAllFlights() {
-		return repo.findAll();
+	public List<Flight> viewAllFlights() throws FlightNotFoundException {
+		List<Flight> flights = new ArrayList<>();
+		flights = repo.findAll();
+		if(flights.isEmpty()) {
+			throw new FlightNotFoundException("No Flights to display");
+		}
+		return flights;
 	}
 
 	@Override
-	public Flight removeFlight(Long flightno)  { 
+	public Flight removeFlight(Long flightno) throws FlightNotFoundException { 
 		Flight f1 = null;
-		try {
-			f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
-		} catch (FlightNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
-		}
+		f1 = repo.findById(flightno).orElseThrow(FlightNotFoundException::new);
 		repo.deleteById(flightno);
 		return f1;
 	}
 
 	@Override
-	public Flight updateFlight(Flight flight) {
+	public Flight updateFlight(Flight flight) throws FlightNotFoundException {
 		Flight f1 = null;
-		try {
-			f1 = repo.findById(flight.getFlightId()).orElseThrow(FlightNotFoundException::new);
-		}catch(FlightNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
-		}
+		f1 = repo.findById(flight.getFlightId()).orElseThrow(FlightNotFoundException::new);
 		f1.setCarrierName(flight.getCarrierName());
 		f1.setFlightModel(flight.getFlightModel());
 		f1.setSeatCapacity(flight.getSeatCapacity());

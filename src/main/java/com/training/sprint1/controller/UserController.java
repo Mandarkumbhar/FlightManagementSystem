@@ -87,19 +87,20 @@ public class UserController {
 	
 	@GetMapping("/flights/{flightId}")
 	public ResponseEntity<Flight> viewFlight(@PathVariable Long flightId) throws FlightNotFoundException {
-		Flight flight = flightService.viewFlight(flightId);
-		if(flight == null) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+		try {
+			return new ResponseEntity<Flight>(flightService.viewFlight(flightId), HttpStatus.OK);
+		} catch (FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Flight with this Id Not Found");
 		}
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
+	
 	@GetMapping("/flights")
 	public ResponseEntity<List<Flight>> viewAllFlights() {
-		List<Flight> flight = flightService.viewAllFlights();
-		if(flight.isEmpty()) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+		try {
+		return new ResponseEntity<List<Flight>>(flightService.viewAllFlights(), HttpStatus.OK);
+		} catch (FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Flights to display");
 		}
-		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
 	}
 	
 }

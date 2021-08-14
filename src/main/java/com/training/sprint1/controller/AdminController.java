@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.training.sprint1.entities.Airport;
 import com.training.sprint1.entities.Flight;
@@ -47,7 +48,7 @@ public class AdminController {
 	
 	
 	@GetMapping("/airports/{airportId}")
-	public ResponseEntity<Airport> viewFlight(@PathVariable Long airportId){
+	public ResponseEntity<Airport> viewAirportById(@PathVariable Long airportId){
 		Airport airport = airportService.viewAirportById(airportId);
 		if(airport == null) {
 			return new ResponseEntity("Airport not found", HttpStatus.NOT_FOUND);
@@ -57,11 +58,20 @@ public class AdminController {
 	
 	@GetMapping("/flights")
 	public ResponseEntity<List<Flight>> viewAllFlights() {
-		List<Flight> flight = flightService.viewAllFlights();
-		if(flight.isEmpty()) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+		try {
+		return new ResponseEntity<List<Flight>>(flightService.viewAllFlights(), HttpStatus.OK);
+		} catch (FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Flights to display");
 		}
-		return new ResponseEntity<List<Flight>>(flight, HttpStatus.OK);
+	}
+	
+	@GetMapping("/flights/{flightId}")
+	public ResponseEntity<Flight> viewFlight(@PathVariable Long flightId) throws FlightNotFoundException {
+		try {
+			return new ResponseEntity<Flight>(flightService.viewFlight(flightId), HttpStatus.OK);
+		} catch (FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Flight with this Id Not Found");
+		}
 	}
 	
 	@PostMapping("/flights")
@@ -72,20 +82,22 @@ public class AdminController {
 	
 	@PutMapping("/flights")
 	public ResponseEntity<Flight> updateFlight(@RequestBody Flight f1) {
-		Flight flight = flightService.updateFlight(f1);
-		if(flight == null) {
-			return new ResponseEntity("Flight not found", HttpStatus.NOT_FOUND);
+		try {
+			return new ResponseEntity<Flight>(flightService.updateFlight(f1), HttpStatus.OK);
+		}catch(FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Flight with this Id Not Found");
 		}
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+		
 	}
 	
 	@DeleteMapping("/flights/{flightId}")
-	public ResponseEntity<Flight> removeFlight(@PathVariable Long flightId) {
-		Flight flight = flightService.removeFlight(flightId);
-		if( flight == null) {
-			return new ResponseEntity("Flight Id not available", HttpStatus.NOT_FOUND);
+	public ResponseEntity <Flight> removeFlight(@PathVariable Long flightId) {
+		try {
+			return new ResponseEntity<Flight>(flightService.removeFlight(flightId), HttpStatus.OK);
+		}catch(FlightNotFoundException fnfe) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Flight with this Id Not Found");
 		}
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/scheduledFlights")

@@ -13,8 +13,8 @@ import com.training.sprint1.exception.FlightNotFoundException;
 public interface IFlightService {
 
 	public Flight addFlight(Flight flight);
-	public Flight viewFlight(Long flightId);
-	public List<Flight> viewAllFlights();
-	public Flight removeFlight(Long flightno);
-	public Flight updateFlight(Flight flight);
+	public Flight viewFlight(Long flightId) throws FlightNotFoundException;
+	public List<Flight> viewAllFlights() throws FlightNotFoundException;
+	public Flight removeFlight(Long flightno) throws FlightNotFoundException;
+	public Flight updateFlight(Flight flight) throws FlightNotFoundException;
 }

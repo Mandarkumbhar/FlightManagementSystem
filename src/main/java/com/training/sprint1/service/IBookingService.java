@@ -2,6 +2,8 @@ package com.training.sprint1.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.training.sprint1.entities.*;
 import com.training.sprint1.exception.BookingNotFoundException;
 
 @Service
+@Transactional
 public interface IBookingService {
 	
 	public Booking addBooking(Booking newBooking); 

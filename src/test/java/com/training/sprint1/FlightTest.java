@@ -77,7 +77,7 @@ class FlightTest {
 	}
 	
 	@Test
-	public void viewAllFlightsTest() {
+	public void viewAllFlightsTest() throws FlightNotFoundException {
 		
 		when(repo.findAll()).thenReturn(flights);
 		Assertions.assertEquals(4, service.viewAllFlights().size());
@@ -94,7 +94,7 @@ class FlightTest {
 	
 	
 	@Test
-	public void updateFlightTest() {
+	public void updateFlightTest() throws FlightNotFoundException {
 		when(repo.findById(f1.getFlightId())).thenReturn(Optional.of(f1));
 		when(repo.save(f1)).thenReturn(f4);
 		Assertions.assertEquals(f4, service.updateFlight(f1));

@@ -4,6 +4,8 @@ import com.training.sprint1.exception.BookingNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import com.training.sprint1.repository.IBookingRepository;
 
 
 @Service
+@Transactional
 public class BookingService implements IBookingService {
 
 
