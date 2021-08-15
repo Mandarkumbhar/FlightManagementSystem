@@ -16,4 +16,5 @@ public interface IScheduledFlightRepository extends JpaRepository<ScheduledFligh
 	List<ScheduledFlight> findByScheduleScheduleDate(LocalDate date);
 	@Query("SELECT sf FROM ScheduledFlight sf  WHERE sf.schedule.sourceAirport.id=:sa and sf.schedule.destinationAirport.id=:da and sf.schedule.scheduleDate=:sd")
 	List<ScheduledFlight> findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(@Param("sa") Long scourceId,@Param("da") Long destinationId,@Param("sd") LocalDate date);
+	List<ScheduledFlight> findByFlightFlightId(Long flightId);
 }

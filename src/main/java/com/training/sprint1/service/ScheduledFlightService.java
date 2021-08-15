@@ -31,8 +31,9 @@ public class ScheduledFlightService implements IScheduledFlightService{
 
 	@Override
 	public List<ScheduledFlight> viewFlightSchedule(Long flightno) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ScheduledFlight> scheduledFlightsByID = flightRepository.findByFlightFlightId(flightno);
+		
+		return scheduledFlightsByID;
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class ScheduledFlightService implements IScheduledFlightService{
 	public List<ScheduledFlight> viewAllScheduledFlightsByAriportAndDate(Long sourceAirportId,
 			Long destenationAirportId, LocalDate date) {
 		List<ScheduledFlight> sList = flightRepository.findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(sourceAirportId, destenationAirportId, date);
-		System.out.println(sList);
+		
 		return sList;
 	}
 

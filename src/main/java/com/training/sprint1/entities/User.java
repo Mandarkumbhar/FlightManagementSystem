@@ -11,9 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "fms_users")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +30,7 @@ private String email;
 private Long mobileNumber;
 
 @OneToMany(mappedBy = "user")
+@JsonIgnore
 private List<Booking> bookings;
 
 

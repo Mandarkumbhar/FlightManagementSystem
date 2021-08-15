@@ -109,8 +109,8 @@ public class UserTest {
 			
 			
 			//___________________________________________________________
-			pass1 = new Passenger(221l, "Pass1", 15, 123456l, 40.0);
-			pass2 = new Passenger(222l, "Pass2", 25, 125645l, 60.0);
+			pass1 = new Passenger("Pass1", 15, 123456l, 40.0);
+			pass2 = new Passenger("Pass2", 25, 125645l, 60.0);
 			
 			passengers.add(pass1);
 			passengers.add(pass2);

@@ -121,4 +121,8 @@ public class AdminController {
 	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByAirportAndDate(@RequestParam("sourceAirportId") Long sourceAirportId ,@RequestParam("destinationAirportId") Long destinationAirportId ,@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
 		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(sourceAirportId, destinationAirportId, date),HttpStatus.OK);
 	}
+	@GetMapping("/scheduledFlights/{flightId}")
+	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsById(@PathVariable Long flightId){
+		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewFlightSchedule(flightId),HttpStatus.OK);
+	}
 }

@@ -58,9 +58,9 @@ public class BookingController {
 	
 	
 	@GetMapping("/Bookings/{Id}")
-	public ResponseEntity<Booking> findBookingById(@PathVariable Long bookingId) throws BookingNotFoundException {
+	public ResponseEntity<Booking> findBookingById(@PathVariable Long Id) throws BookingNotFoundException {
 		try {
-			return new ResponseEntity<Booking>(bookingService.findBookingById(bookingId), HttpStatus.OK);
+			return new ResponseEntity<Booking>(bookingService.findBookingById(Id), HttpStatus.OK);
 		} catch (BookingNotFoundException fnfe) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking with this Id Not Found");
 		}

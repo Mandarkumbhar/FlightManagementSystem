@@ -2,20 +2,16 @@ package com.training.sprint1.entities;
 
 
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Entity
-@Table(name = "fms_passenger")
+@Embeddable
 public class Passenger {
 	
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)	
-private Long pnrNumber;
 private String passengerName;
 private int age;
 private Long passengerUIN;
@@ -27,23 +23,18 @@ private Double luggage;
 	super();
 }
 	
-	public Passenger(Long pnrNumber, String passengerName, int age, Long passengerUIN, Double luggage) {
-	super();
-	this.pnrNumber = pnrNumber;
-	this.passengerName = passengerName;
-	this.age = age;
-	this.passengerUIN = passengerUIN;
-	this.luggage = luggage;
-}
 	
-	
-//Getters Setters
-public Long getPnrNumber() {
-	return pnrNumber;
-}
-public void setPnrNumber(Long pnrNumber) {
-	this.pnrNumber = pnrNumber;
-}
+
+public Passenger(String passengerName, int age, Long passengerUIN, Double luggage) {
+		super();
+		this.passengerName = passengerName;
+		this.age = age;
+		this.passengerUIN = passengerUIN;
+		this.luggage = luggage;
+	}
+
+
+
 public String getPassengerName() {
 	return passengerName;
 }
