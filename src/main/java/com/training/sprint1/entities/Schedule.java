@@ -32,47 +32,54 @@ public Schedule(Airport sourceAirport, Airport destinationAirport, LocalDate sch
 	this.scheduleDate = scheduleDate;
 	this.arraivalTime = arraivalTime;
 	this.departureTime = departureTime;
-	
 }
 
 public Airport getSourceAirport() {
 	return sourceAirport;
 }
+
 public void setSourceAirport(Airport sourceAirport) {
 	this.sourceAirport = sourceAirport;
 }
+
 public Airport getDestinationAirport() {
 	return destinationAirport;
 }
+
 public void setDestinationAirport(Airport destinationAirport) {
 	this.destinationAirport = destinationAirport;
 }
+
+public LocalDate getScheduleDate() {
+	return scheduleDate;
+}
+
+public void setScheduleDate(LocalDate scheduleDate) {
+	this.scheduleDate = scheduleDate;
+}
+
 public LocalTime getArraivalTime() {
 	return arraivalTime;
 }
+
 public void setArraivalTime(LocalTime arraivalTime) {
 	this.arraivalTime = arraivalTime;
 }
+
 public LocalTime getDepartureTime() {
 	return departureTime;
 }
+
 public void setDepartureTime(LocalTime departureTime) {
 	this.departureTime = departureTime;
 }
 
-public LocalDate getDate() {
-	return scheduleDate;
-}
-
-public void setDate(LocalDate scheduleDate) {
-	this.scheduleDate = scheduleDate;
-}
-
 @Override
 public String toString() {
-	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", date=" + scheduleDate
-			+ ", arraivalTime=" + arraivalTime + ", departureTime=" + departureTime + "]";
+	return "Schedule [sourceAirport=" + sourceAirport + ", destinationAirport=" + destinationAirport + ", scheduleDate="
+			+ scheduleDate + ", arraivalTime=" + arraivalTime + ", departureTime=" + departureTime + "]";
 }
+
 
 
    

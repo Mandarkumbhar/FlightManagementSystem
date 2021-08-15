@@ -66,10 +66,11 @@ public class ScheduledFlightService implements IScheduledFlightService{
 		return scheduledFlightsByDate;
 	}
 
+	
 	@Override
-	public List<ScheduledFlight> viewAllScheduledFlightsByAriportAndDate(Airport sourceAirport,
-			Airport destenationAirport, LocalDate date) {
-		List<ScheduledFlight> sList = flightRepository.findByScheduleSourceAirportIdAndScheduleDestinationAirportIdAndScheduleScheduleDate(sourceAirport.getId(), destenationAirport.getId(), date);
+	public List<ScheduledFlight> viewAllScheduledFlightsByAriportAndDate(Long sourceAirportId,
+			Long destenationAirportId, LocalDate date) {
+		List<ScheduledFlight> sList = flightRepository.findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(sourceAirportId, destenationAirportId, date);
 		System.out.println(sList);
 		return sList;
 	}

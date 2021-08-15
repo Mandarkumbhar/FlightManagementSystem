@@ -123,15 +123,15 @@ class ScheduledFlightTest {
 	
 	  @Test 
 	  public void viewAllScheduledFlightByDateTest() {
-	  when(scheduledFlightRepository.findByScheduleScheduleDate(scheduledFlight1.getSchedule().getDate())).thenReturn(scheduledFlightslListByDate); 
-	  Assertions.assertEquals(2,scheduledFlightService.viewAllScheduledFlightsByDate(scheduledFlight1.getSchedule().getDate()).size());
+	  when(scheduledFlightRepository.findByScheduleScheduleDate(scheduledFlight1.getSchedule().getScheduleDate())).thenReturn(scheduledFlightslListByDate); 
+	  Assertions.assertEquals(2,scheduledFlightService.viewAllScheduledFlightsByDate(scheduledFlight1.getSchedule().getScheduleDate()).size());
 	  
 	  }
 	 
 	  @Test 
 	  public void viewAllScheduledFlightByAirportAndDateTest() {
-	  when(scheduledFlightRepository.findByScheduleSourceAirportIdAndScheduleDestinationAirportIdAndScheduleScheduleDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getDate())).thenReturn(scheduledFlightslListByAirportAndDate); 
-	  Assertions.assertEquals(1,scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(scheduledFlight1.getSchedule().getSourceAirport(),scheduledFlight1.getSchedule().getDestinationAirport(),scheduledFlight1.getSchedule().getDate()).size());
+	  when(scheduledFlightRepository.findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getScheduleDate())).thenReturn(scheduledFlightslListByAirportAndDate); 
+	  Assertions.assertEquals(1,scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getScheduleDate()).size());
 	  
 	  }
 	

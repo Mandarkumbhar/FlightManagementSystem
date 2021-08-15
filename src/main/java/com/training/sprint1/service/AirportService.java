@@ -14,12 +14,19 @@ import com.training.sprint1.repository.IAirportRepository;
 @Service
 @Transactional
 public class AirportService implements IAirportService {
+	
     @Autowired
 	private IAirportRepository repo;
+    
+    
+    
 	@Override
 	public List<Airport> viewAirport() {
-		  
-		return repo.findAll();
+		
+		
+		List<Airport> airports = repo.findAll();
+		System.out.println(airports);
+		return airports;
 	}
 
 	@Override
