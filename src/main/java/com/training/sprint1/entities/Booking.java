@@ -32,7 +32,8 @@ private Long bookingId;
 @ManyToOne(fetch = FetchType.LAZY)
 private User user;
 private LocalDate bookingDate;
-@ElementCollection(fetch = FetchType.LAZY)
+
+@ElementCollection(fetch = FetchType.EAGER)
 private List <Passenger>passengerList;
 private double ticketCost;
 @ManyToOne
