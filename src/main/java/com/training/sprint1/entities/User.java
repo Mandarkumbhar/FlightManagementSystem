@@ -2,9 +2,12 @@ package com.training.sprint1.entities;
 
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +32,7 @@ private String password;
 private String email;
 private Long mobileNumber;
 
-@OneToMany(mappedBy = "user")
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 @JsonIgnore
 private List<Booking> bookings;
 

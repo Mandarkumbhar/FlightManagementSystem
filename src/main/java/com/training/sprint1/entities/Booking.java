@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,10 +29,10 @@ public class Booking {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long bookingId;
 
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(fetch = FetchType.LAZY)
 private User user;
 private LocalDate bookingDate;
-@ElementCollection
+@ElementCollection(fetch = FetchType.LAZY)
 private List <Passenger>passengerList;
 private double ticketCost;
 @ManyToOne

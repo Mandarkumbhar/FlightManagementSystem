@@ -50,7 +50,7 @@ public class BookingTest {
 	List<Passenger> passengers = new ArrayList<>();
 	Passenger pass1, pass2;
 	
-	List<Flight> flights = new ArrayList<>();
+	
 	Flight flight1, flight2;
 	
 	
@@ -66,9 +66,9 @@ public class BookingTest {
 	Schedule s2 =  new Schedule(a3, a4, LocalDate.of(2021, 8, 24) ,LocalTime.of(8, 30), LocalTime.of(9, 00));
 	Schedule s3 =  new Schedule(a5, a6,LocalDate.of(2021, 8, 25) , LocalTime.of(4, 30), LocalTime.of(6, 00));
 	
-	ScheduledFlight Sflight1 = new ScheduledFlight(flights, 10, s1);
-	ScheduledFlight Sflight2 = new ScheduledFlight(flights, 15, s2);
-	ScheduledFlight Sflight3 = new ScheduledFlight(flights, 12, s3);
+	ScheduledFlight Sflight1 = new ScheduledFlight(flight1, 10, s1);
+	ScheduledFlight Sflight2 = new ScheduledFlight(flight1, 15, s2);
+	ScheduledFlight Sflight3 = new ScheduledFlight(flight2, 12, s3);
 	
 	
 	
@@ -121,9 +121,7 @@ public class BookingTest {
 		flight2 = new Flight(441l, "Emirates", "777 Passengers", 100);
 		
 		
-		flights.add(flight1);
-		flights.add(flight2);
-
+		
 		
 	}
 		

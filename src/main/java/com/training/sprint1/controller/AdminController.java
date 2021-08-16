@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -110,6 +111,30 @@ public class AdminController {
 	public ResponseEntity<ScheduledFlight> addScheduledFlight(@RequestBody ScheduledFlight f1) {
 		ScheduledFlight scheduledFlight = scheduledFlightService.addFlightSchedule(f1);
 		return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/scheduledFlights")
+	public ResponseEntity<ScheduledFlight> updateScheduledFlight(@RequestBody ScheduledFlight f1) {
+		ScheduledFlight scheduledFlight;
+		try {
+			scheduledFlight = scheduledFlightService.updateFlightSchedule(f1);
+			return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.CREATED);
+		} catch (FlightNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Scheduled Flight with this Id Not Found");
+		}
+		
+	}
+	
+	@DeleteMapping("/scheduledFlights/{Id}")
+	public ResponseEntity<ScheduledFlight> deleteScheduledFlight(@PathVariable Long Id) {
+		ScheduledFlight scheduledFlight;
+		try {
+			scheduledFlight = scheduledFlightService.removeFlightSchedule(Id);
+			return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.CREATED);
+		} catch (FlightNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Scheduled Flight with this Id Not Found");
+		}
+		
 	}
 	
 	@GetMapping("/scheduledFlightsByDate")

@@ -75,9 +75,9 @@ class ScheduledFlightTest {
 		Schedule s1 =  new Schedule(a1, a2,LocalDate.of(2021, 8, 23) ,LocalTime.of(6, 30), LocalTime.of(7, 30));
 		Schedule s2 =  new Schedule(a3, a4, LocalDate.of(2021, 8, 23) ,LocalTime.of(8, 30), LocalTime.of(9, 00));
 		Schedule s3 =  new Schedule(a5, a6,LocalDate.of(2021, 8, 25) , LocalTime.of(4, 30), LocalTime.of(6, 00));
-		scheduledFlight1 = new ScheduledFlight(flightlList, 50,s1 );
-		scheduledFlight2 = new ScheduledFlight(flightlList, 45,s2 );
-		scheduledFlight3 = new ScheduledFlight(flightlList, 72,s3);
+		scheduledFlight1 = new ScheduledFlight(flight, 50,s1 );
+		scheduledFlight2 = new ScheduledFlight(flight, 45,s2 );
+		scheduledFlight3 = new ScheduledFlight(flight, 72,s3);
 		scheduledFlightslList.add(scheduledFlight1);
 		scheduledFlightslList.add(scheduledFlight2);
 		scheduledFlightslList.add(scheduledFlight3);

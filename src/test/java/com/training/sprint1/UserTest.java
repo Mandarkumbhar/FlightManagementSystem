@@ -66,8 +66,8 @@ public class UserTest {
 		Schedule s1 =  new Schedule(a1, a2,LocalDate.of(2021, 8, 23) ,LocalTime.of(6, 30), LocalTime.of(7, 30));
 		Schedule s2 =  new Schedule(a3, a4,LocalDate.of(2021, 8, 24) ,LocalTime.of(8, 30), LocalTime.of(9, 00));
 		
-		ScheduledFlight Sflight1 = new ScheduledFlight(flights, 10, s1);
-		ScheduledFlight Sflight2 = new ScheduledFlight(flights, 15, s2);
+		ScheduledFlight Sflight1 = new ScheduledFlight(flight1, 10, s1);
+		ScheduledFlight Sflight2 = new ScheduledFlight(flight2, 15, s2);
 		
 		
 		
