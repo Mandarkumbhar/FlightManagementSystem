@@ -1,14 +1,11 @@
 package com.training.sprint1.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.training.sprint1.entities.Airport;
+import com.training.sprint1.exception.AirportNotFoundException;
 import com.training.sprint1.repository.IAirportRepository;
  
 @Service
@@ -30,9 +27,9 @@ public class AirportService implements IAirportService {
 	}
 
 	@Override
-	public Airport viewAirportById(Long id) {
-		Optional<Airport> airport = repo.findById(id);
-		return airport.get();
+	public Airport viewAirportById(Long id) throws AirportNotFoundException{
+		Airport airport = repo.findById(id).orElseThrow(AirportNotFoundException::new);
+		return airport;
 	}
 	
 

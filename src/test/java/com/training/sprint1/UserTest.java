@@ -88,11 +88,11 @@ public class UserTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			userList = new ArrayList<>();
-			user1 = new User(Role.USER, "User1", "123", "User1.@gmail.com", 123456789l, bookings);
+			user1 = new User(Role.USER, "User1", "123", "User1.@gmail.com", "123456789l", bookings);
 			
-			user2 = new User(Role.USER, "User2", "456", "User2.@gmail.com", 456123789l, bookings);
+			user2 = new User(Role.USER, "User2", "456", "User2.@gmail.com", "456123789l", bookings);
 			
-			user3 = new User(Role.USER, "User3", "789", "User3.@gmail.com", 789456123l, bookings);
+			user3 = new User(Role.USER, "User3", "789", "User3.@gmail.com", "789456123l", bookings);
 		
 			userList.add(user1);
 			userList.add(user2);
@@ -139,7 +139,7 @@ public class UserTest {
 			
 			
 			@Test
-			public void updateCustomerTest() throws RecordNotFoundException {
+			public void updateUserTest() throws RecordNotFoundException {
 				when(userRepo.findById(user1.getId())).thenReturn(Optional.of(user1));
 				when(userRepo.save(user1)).thenReturn(user3);
 				try {

@@ -1,6 +1,8 @@
 package com.training.sprint1.exception;
 
 public class BookingNotFoundException extends Exception {
+	
+	private static final long serialVersionUID = 1L;
 	private String msgs;
 
 	public BookingNotFoundException(String msgs) {

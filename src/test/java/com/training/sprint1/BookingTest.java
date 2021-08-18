@@ -92,9 +92,9 @@ public class BookingTest {
 		
 		
 		
-		user1 = new User(Role.USER, "User1", "123", "User1.@gmail.com", 123456789l, bookings);
-		user2 = new User(Role.USER, "User2", "456", "User2.@gmail.com", 456123789l, bookings);
-		user3 = new User(Role.USER, "User3", "789", "User3.@gmail.com", 789456123l, bookings);
+		user1 = new User(Role.USER, "User1", "123", "User1.@gmail.com", "123456789l", bookings);
+		user2 = new User(Role.USER, "User2", "456", "User2.@gmail.com", "456123789l", bookings);
+		user3 = new User(Role.USER, "User3", "789", "User3.@gmail.com", "789456123l", bookings);
 
 		//___________________________________________________________
 		book1 = new Booking(user1, LocalDate.of(2021, 8, 10), passengers, 200.0, Sflight1, 75);

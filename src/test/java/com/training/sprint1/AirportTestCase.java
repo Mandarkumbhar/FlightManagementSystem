@@ -1,10 +1,8 @@
 package com.training.sprint1;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.when;
-
 import java.util.*;
-
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.training.sprint1.entities.Airport;
 import com.training.sprint1.exception.AirportNotFoundException;
 import com.training.sprint1.repository.IAirportRepository;

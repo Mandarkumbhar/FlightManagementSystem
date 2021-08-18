@@ -1,19 +1,16 @@
 package com.training.sprint1.entities;
 
-
-
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
 
 @Embeddable
 public class Passenger {
-	
+@NotEmpty(message = "Passengername must not be empty")
 private String passengerName;
 private int age;
+
+
 private Long passengerUIN;
 private Double luggage;
 
@@ -34,7 +31,7 @@ public Passenger(String passengerName, int age, Long passengerUIN, Double luggag
 	}
 
 
-
+//Getters and Setters
 public String getPassengerName() {
 	return passengerName;
 }

@@ -1,14 +1,11 @@
 package com.training.sprint1;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
+import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.aspectj.lang.annotation.Before;
-//import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.training.sprint1.entities.Flight;
 import com.training.sprint1.exception.FlightNotFoundException;
 import com.training.sprint1.repository.IFlightRepository;

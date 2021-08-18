@@ -2,6 +2,7 @@ package com.training.sprint1.exception;
 
 public class FlightNotFoundException extends Exception {
 	
+	private static final long serialVersionUID = 1L;
 	private String msg;
 	
 	public FlightNotFoundException(String msg) {

@@ -1,21 +1,12 @@
 package com.training.sprint1.service;
+
 import com.training.sprint1.exception.BookingNotFoundException;
-
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.training.sprint1.entities.Booking;
-import com.training.sprint1.entities.User;
-import com.training.sprint1.exception.RecordAlreadyPresentException;
-import com.training.sprint1.exception.RecordNotFoundException;
-import com.training.sprint1.exception.UserNotFoundException;
 import com.training.sprint1.repository.IBookingRepository;
 
 
@@ -69,6 +60,29 @@ public class BookingService implements IBookingService {
 		b4 = brepo.findById(bookingId).orElseThrow(BookingNotFoundException::new);
 		return b4;
 	}
+	
+	@Override
+	public List<Booking> viewAllBookingListByBookingDate(LocalDate date) {
+    List<Booking> bookingListByDate = brepo.findByBookingDate(date);
+		
+		return bookingListByDate;
+	}
+
+
+	@Override
+	public List<Booking> viewAllBookingListByFlightId(Long flightId) {
+    List<Booking> bookingListByID = brepo.viewAllBookingListByFlightId(flightId);
+		return bookingListByID;
+	}
+
+
+	@Override
+	public List<Booking> viewAllBookingListByUserId(Long userId) {
+List<Booking> bookingListByID = brepo.viewAllBookingListByUserId(userId);
+		
+		return bookingListByID;
+	}
+	
 	
 
 }

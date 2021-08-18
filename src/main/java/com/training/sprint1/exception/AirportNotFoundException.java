@@ -1,6 +1,8 @@
 package com.training.sprint1.exception;
 
 public class AirportNotFoundException extends RuntimeException{
+	
+	private static final long serialVersionUID = 1L;
 	private String message;
 	
 	public AirportNotFoundException(String msg) {

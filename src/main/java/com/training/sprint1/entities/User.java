@@ -2,18 +2,18 @@ package com.training.sprint1.entities;
 
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,15 +22,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "fms_users")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User {
+	
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
+
 @Enumerated(EnumType.STRING)
 private Role role;
+
+@NotEmpty(message = "Username must not be empty")
 private String userName;
+
+@NotEmpty(message = "Password must not be empty")
+@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",message = "Password should  contains at least 8 characters and at most 20 characters, at least one digit, at least one upper case alphabet, at least one lower case alphabet and at least one special character ")
 private String password;
+
+@Email(message = "Email should be valid")
 private String email;
-private Long mobileNumber;
+
+@Pattern(regexp="(^$|[0-9]{10})", message =  "Mobile Number should be valid")
+private String mobileNumber;
 
 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 @JsonIgnore
@@ -42,7 +53,7 @@ public User() {
 }
 
 
-public User(Role role, String userName, String password, String email, Long mobileNumber, List<Booking> bookings) {
+public User(Role role, String userName, String password, String email, String mobileNumber, List<Booking> bookings) {
 	super();
 	this.role = role;
 	this.userName = userName;
@@ -55,7 +66,7 @@ public User(Role role, String userName, String password, String email, Long mobi
 
 
 
-public User(Long id, Role role, String userName, String password, String email, Long mobileNumber,
+public User(Long id, Role role, String userName, String password, String email, String mobileNumber,
 		List<Booking> bookings) {
 	super();
 	this.id = id;
@@ -69,7 +80,7 @@ public User(Long id, Role role, String userName, String password, String email, 
 
 
 
-public User(Role role, String userName, String password, String email, Long mobileNumber) {
+public User(Role role, String userName, String password, String email, String mobileNumber) {
 	super();
 	this.role = role;
 	this.userName = userName;
@@ -129,12 +140,15 @@ public void setEmail(String email) {
 }
 
 
-public Long getMobileNumber() {
+
+
+
+public String getMobileNumber() {
 	return mobileNumber;
 }
 
 
-public void setMobileNumber(Long mobileNumber) {
+public void setMobileNumber(String mobileNumber) {
 	this.mobileNumber = mobileNumber;
 }
 

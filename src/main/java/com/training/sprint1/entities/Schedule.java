@@ -2,12 +2,10 @@ package com.training.sprint1.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 import javax.persistence.Embeddable;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 @Embeddable
 public class Schedule {
 	@OneToOne

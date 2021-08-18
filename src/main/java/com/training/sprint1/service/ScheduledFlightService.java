@@ -2,15 +2,9 @@ package com.training.sprint1.service;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
-import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.training.sprint1.entities.Airport;
-import com.training.sprint1.entities.Flight;
 import com.training.sprint1.entities.ScheduledFlight;
 import com.training.sprint1.exception.FlightNotFoundException;
 import com.training.sprint1.repository.IScheduledFlightRepository;
