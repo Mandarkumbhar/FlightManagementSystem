@@ -39,14 +39,14 @@ class FlightTest {
 	
 	@BeforeEach
 	void setUp() {
-		//MockitoAnnotations.initMocks(this);
+		
 		
 		 f1 = new Flight("Indigo","A320 CEO",180);
 		 f2 = new Flight("Indigo","A320 NEO",180);
 		 f3 = new Flight("Indigo","A321 NEO",220);
 		 f4 = new Flight("Indigo","ATR600 FLEET",75);
 		
-		//List<Flight> flightList = Arrays.asList(f1,f2,f3,f4);
+		
 		
 		flights = new ArrayList<>();
 		flights.add(f1);

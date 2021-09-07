@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.training.sprint1.FlightManagementSystemApplication;
 import com.training.sprint1.entities.ScheduledFlight;
 import com.training.sprint1.entities.User;
+import com.training.sprint1.exception.FlightNotFoundException;
 import com.training.sprint1.exception.UserNotFoundException;
 import com.training.sprint1.service.IUserService;
 import com.training.sprint1.service.ScheduledFlightService;
@@ -82,21 +83,21 @@ public class UserController {
 	
 	
 	@GetMapping("/scheduledFlightsByDate")
-	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws FlightNotFoundException{
 		logger.info("Viewing All Scheduled Flights By Date");
 		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewAllScheduledFlightsByDate(date),HttpStatus.OK);
 	}
 	
 	@GetMapping("/scheduledFlightsByAirportAndDate")
-	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByAirportAndDate(@RequestParam("sourceAirportId") Long sourceAirportId ,@RequestParam("destinationAirportId") Long destinationAirportId ,@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsByAirportAndDate(@RequestParam("sourceAirportId") Long sourceAirportId ,@RequestParam("destinationAirportId") Long destinationAirportId ,@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws FlightNotFoundException{
 		logger.info("Viewing All Scheduled Flights By Airport and Date");
 		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(sourceAirportId, destinationAirportId, date),HttpStatus.OK);
 	}
 	
 	@GetMapping("/scheduledFlights/{flightId}")
-	public ResponseEntity<List<ScheduledFlight>> ListAllScheduledFlightsById(@PathVariable Long flightId){
+	public ResponseEntity<ScheduledFlight> ListAllScheduledFlightsById(@PathVariable Long flightId) throws FlightNotFoundException{
 		logger.info("Viewing All Scheduled Flights By Flight Id");
-		return new ResponseEntity<List<ScheduledFlight>>(scheduledFlightService.viewFlightSchedule(flightId),HttpStatus.OK);
+		return new ResponseEntity<ScheduledFlight>(scheduledFlightService.viewFlightSchedule(flightId),HttpStatus.OK);
 	}
 	
 }

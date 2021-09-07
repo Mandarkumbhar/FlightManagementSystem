@@ -119,14 +119,14 @@ class ScheduledFlightTest {
 	
 	
 	  @Test 
-	  public void viewAllScheduledFlightByDateTest() {
+	  public void viewAllScheduledFlightByDateTest() throws FlightNotFoundException {
 	  when(scheduledFlightRepository.findByScheduleScheduleDate(scheduledFlight1.getSchedule().getScheduleDate())).thenReturn(scheduledFlightslListByDate); 
 	  Assertions.assertEquals(2,scheduledFlightService.viewAllScheduledFlightsByDate(scheduledFlight1.getSchedule().getScheduleDate()).size());
 	  
 	  }
 	 
 	  @Test 
-	  public void viewAllScheduledFlightByAirportAndDateTest() {
+	  public void viewAllScheduledFlightByAirportAndDateTest() throws FlightNotFoundException {
 	  when(scheduledFlightRepository.findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getScheduleDate())).thenReturn(scheduledFlightslListByAirportAndDate); 
 	  Assertions.assertEquals(1,scheduledFlightService.viewAllScheduledFlightsByAriportAndDate(scheduledFlight1.getSchedule().getSourceAirport().getId(),scheduledFlight1.getSchedule().getDestinationAirport().getId(),scheduledFlight1.getSchedule().getScheduleDate()).size());
 	  

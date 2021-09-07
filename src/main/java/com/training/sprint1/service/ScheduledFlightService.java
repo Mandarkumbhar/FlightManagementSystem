@@ -24,8 +24,8 @@ public class ScheduledFlightService implements IScheduledFlightService{
 	}
 
 	@Override
-	public List<ScheduledFlight> viewFlightSchedule(Long flightno) {
-		List<ScheduledFlight> scheduledFlightsByID = flightRepository.findByFlightFlightId(flightno);
+	public ScheduledFlight viewFlightSchedule(Long flightno) throws FlightNotFoundException {
+		ScheduledFlight scheduledFlightsByID = flightRepository.findById(flightno).orElseThrow(FlightNotFoundException::new);
 		
 		return scheduledFlightsByID;
 	}
@@ -55,18 +55,22 @@ public class ScheduledFlightService implements IScheduledFlightService{
 
 	
 	@Override
-	public List<ScheduledFlight> viewAllScheduledFlightsByDate(LocalDate date) {
+	public List<ScheduledFlight> viewAllScheduledFlightsByDate(LocalDate date) throws FlightNotFoundException {
 		List<ScheduledFlight> scheduledFlightsByDate = flightRepository.findByScheduleScheduleDate(date);
-		
+		if(scheduledFlightsByDate.isEmpty()) {
+			throw new FlightNotFoundException();
+		}
 		return scheduledFlightsByDate;
 	}
 
 	
 	@Override
 	public List<ScheduledFlight> viewAllScheduledFlightsByAriportAndDate(Long sourceAirportId,
-			Long destenationAirportId, LocalDate date) {
+			Long destenationAirportId, LocalDate date) throws FlightNotFoundException {
 		List<ScheduledFlight> sList = flightRepository.findByScheduleSourceAirportIdAndDestinationAirportIdAndScheduleDate(sourceAirportId, destenationAirportId, date);
-		
+		if(sList.isEmpty()) {
+			throw new FlightNotFoundException();
+		}
 		return sList;
 	}
 

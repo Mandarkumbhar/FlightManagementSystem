@@ -22,7 +22,6 @@ public class AirportService implements IAirportService {
 		
 		
 		List<Airport> airports = repo.findAll();
-		System.out.println(airports);
 		return airports;
 	}
 
