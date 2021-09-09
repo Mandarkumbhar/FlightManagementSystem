@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +22,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.training.sprint1.FlightManagementSystemApplication;
+import com.training.sprint1.entities.Role;
 import com.training.sprint1.entities.ScheduledFlight;
 import com.training.sprint1.entities.User;
 import com.training.sprint1.exception.FlightNotFoundException;
+import com.training.sprint1.exception.RecordNotFoundException;
 import com.training.sprint1.exception.UserNotFoundException;
 import com.training.sprint1.service.IUserService;
 import com.training.sprint1.service.ScheduledFlightService;
 
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600,allowedHeaders={"Authorization","Access-Control-Request-Headers","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials","Access-Control-Allow-Headers"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -73,6 +76,10 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/role")
+	public ResponseEntity <Role> GetRole(@RequestParam("userName") String u5) throws RecordNotFoundException{
+		return new ResponseEntity<Role>(userService.GetRole(u5),HttpStatus.OK);
+		}
 	
 	@GetMapping("/viewAllUsers")
 	public ResponseEntity<List<User>> viewAllUsers() throws UserNotFoundException {
@@ -99,5 +106,16 @@ public class UserController {
 		logger.info("Viewing All Scheduled Flights By Flight Id");
 		return new ResponseEntity<ScheduledFlight>(scheduledFlightService.viewFlightSchedule(flightId),HttpStatus.OK);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600,allowedHeaders={"Authorization","Access-Control-Request-Headers","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials","Access-Control-Allow-Headers"})
+
+	  @PostMapping("/login")
+	  public ResponseEntity<User> loginCustomer(@RequestBody User c){
+		   
+		 System.out.println("in controller for login");
+		User u =   userService.findOne(c.getUserName()) ;
+		System.out.println(u + "valid user");
+		return new ResponseEntity<User>(u,HttpStatus.OK);  
+	  }
 	
 }

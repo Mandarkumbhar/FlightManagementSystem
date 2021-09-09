@@ -8,5 +8,5 @@ import com.training.sprint1.entities.User;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long> {
-	
+	User findByUserName(String userName);
 }
