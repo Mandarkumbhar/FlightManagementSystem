@@ -1,6 +1,6 @@
 package com.training.sprint1.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -21,4 +21,8 @@ public interface IUserService {
 	public UserDetails loadUserByUsername(String username) throws UserNotFoundException;
 	public User findOne(String username);
 	public Role GetRole(String username);
+	public Long GetId(String username);
+	public String GetPassword(String username);
+	public String GetEmail(String username);
+	public String GetMobileNumber(String username);
 }

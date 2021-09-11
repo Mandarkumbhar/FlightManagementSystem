@@ -76,6 +76,26 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/id")
+	public ResponseEntity <Long> GetId(@RequestParam("userName") String u5) throws RecordNotFoundException{
+		return new ResponseEntity<Long>(userService.GetId(u5),HttpStatus.OK);
+		}
+	
+	@GetMapping("/pass")
+	public ResponseEntity <String> GetPassword(@RequestParam("userName") String u5) throws RecordNotFoundException{
+		return new ResponseEntity<String>(userService.GetPassword(u5),HttpStatus.OK);
+		}
+	
+	@GetMapping("/email")
+	public ResponseEntity <String> GetEmail(@RequestParam("userName") String u5) throws RecordNotFoundException{
+		return new ResponseEntity<String>(userService.GetEmail(u5),HttpStatus.OK);
+		}
+	
+	@GetMapping("/mob")
+	public ResponseEntity <String> GetMobileNumber(@RequestParam("userName") String u5) throws RecordNotFoundException{
+		return new ResponseEntity<String>(userService.GetMobileNumber(u5),HttpStatus.OK);
+		}
+	
 	@GetMapping("/role")
 	public ResponseEntity <Role> GetRole(@RequestParam("userName") String u5) throws RecordNotFoundException{
 		return new ResponseEntity<Role>(userService.GetRole(u5),HttpStatus.OK);

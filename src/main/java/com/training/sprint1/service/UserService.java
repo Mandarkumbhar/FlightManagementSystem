@@ -106,6 +106,28 @@ public class UserService implements UserDetailsService, IUserService {
 		return u.getRole();
 	}
 
-
+	@Override
+	public Long GetId(String username) {
+		User u = repo.findByUserName(username);
+		return u.getId();
+	}
+	
+	@Override
+	public String GetPassword(String username) {
+		User u = repo.findByUserName(username);
+		return u.getPassword();
+	}
+	
+	@Override
+	public String GetEmail(String username) {
+		User u = repo.findByUserName(username);
+		return u.getEmail();
+	}
+	
+	@Override
+	public String GetMobileNumber(String username) {
+		User u = repo.findByUserName(username);
+		return u.getMobileNumber();
+	}
 	
 }
