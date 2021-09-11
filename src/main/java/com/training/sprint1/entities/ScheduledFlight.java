@@ -2,6 +2,8 @@ package com.training.sprint1.entities;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,23 +22,23 @@ public class ScheduledFlight {
  private Integer availableSeats;
  @Embedded
  private Schedule schedule;
+ private double cost;
+ @Enumerated(EnumType.STRING)
+ private ScheduledStatus scheduledStatus;
  
 public ScheduledFlight() {
 
 }
 
-
-
-
-public ScheduledFlight(Long scheduledFlightIdLong, Flight flight, Integer availableSeats, Schedule schedule) {
+public ScheduledFlight(Flight flight, Integer availableSeats, Schedule schedule, double cost,
+		ScheduledStatus scheduledStatus) {
 	super();
-	this.scheduledFlightIdLong = scheduledFlightIdLong;
 	this.flight = flight;
 	this.availableSeats = availableSeats;
 	this.schedule = schedule;
+	this.cost = cost;
+	this.scheduledStatus = scheduledStatus;
 }
-
-
 
 
 public ScheduledFlight(Flight flight, Integer availableSeats, Schedule schedule) {
@@ -46,9 +48,6 @@ public ScheduledFlight(Flight flight, Integer availableSeats, Schedule schedule)
 	this.schedule = schedule;
 }
 
-
-
-
 public Long getScheduledFlightIdLong() {
 	return scheduledFlightIdLong;
 }
@@ -57,21 +56,13 @@ public void setScheduledFlightIdLong(Long scheduledFlightIdLong) {
 	this.scheduledFlightIdLong = scheduledFlightIdLong;
 }
 
-
-
 public Flight getFlight() {
 	return flight;
 }
 
-
-
-
 public void setFlight(Flight flight) {
 	this.flight = flight;
 }
-
-
-
 
 public Integer getAvailableSeats() {
 	return availableSeats;
@@ -89,14 +80,29 @@ public void setSchedule(Schedule schedule) {
 	this.schedule = schedule;
 }
 
+public double getCost() {
+	return cost;
+}
 
+public void setCost(double cost) {
+	this.cost = cost;
+}
 
+public ScheduledStatus getScheduledStatus() {
+	return scheduledStatus;
+}
+
+public void setScheduledStatus(ScheduledStatus scheduledStatus) {
+	this.scheduledStatus = scheduledStatus;
+}
 
 @Override
 public String toString() {
 	return "ScheduledFlight [scheduledFlightIdLong=" + scheduledFlightIdLong + ", flight=" + flight
-			+ ", availableSeats=" + availableSeats + ", schedule=" + schedule + "]";
+			+ ", availableSeats=" + availableSeats + ", schedule=" + schedule + ", cost=" + cost + ", scheduledStatus="
+			+ scheduledStatus + "]";
 }
+
 
 
 

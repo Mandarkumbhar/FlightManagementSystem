@@ -99,8 +99,8 @@ public class UserTest {
 			userList.add(user3);
 			
 			//___________________________________________________________
-			book1 = new Booking(user1, LocalDate.of(2021, 8, 10), passengers, 200.0, Sflight1, 75);
-			book2 = new Booking(user2, LocalDate.of(2021, 8, 11), passengers, 350.0, Sflight2, 60);
+			book1 = new Booking(user1, LocalDate.of(2021, 8, 10), passengers,  Sflight1, 75);
+			book2 = new Booking(user2, LocalDate.of(2021, 8, 11), passengers,  Sflight2, 60);
 			
 			bookings.add(book1);
 			bookings.add(book2);

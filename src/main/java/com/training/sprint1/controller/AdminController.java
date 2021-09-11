@@ -110,8 +110,17 @@ public class AdminController {
 		ScheduledFlight scheduledFlight;
 		logger.info("Updating Scheduled Flights");
 			scheduledFlight = scheduledFlightService.updateFlightSchedule(f1);
-			return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.CREATED);
+			return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.OK);
 	}
+	
+	@PutMapping("/scheduledFlights/cancel")
+	public ResponseEntity<ScheduledFlight> updateScheduledFlightStatus(@RequestBody ScheduledFlight f1) throws FlightNotFoundException {
+		ScheduledFlight scheduledFlight;
+		logger.info("Updating Scheduled Flights");
+			scheduledFlight = scheduledFlightService.updateFlightScheduleStatus(f1);
+			return new ResponseEntity<ScheduledFlight>(scheduledFlight, HttpStatus.OK);
+	}
+	
 	
 	@DeleteMapping("/scheduledFlights/{Id}")
 	public ResponseEntity<ScheduledFlight> deleteScheduledFlight(@PathVariable Long Id) throws FlightNotFoundException {

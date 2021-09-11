@@ -12,6 +12,7 @@ public interface IScheduledFlightService {
 	public ScheduledFlight viewFlightSchedule(Long flightno) throws FlightNotFoundException;
 	public ScheduledFlight removeFlightSchedule(Long scheduledFlightId) throws FlightNotFoundException;
 	public ScheduledFlight updateFlightSchedule(ScheduledFlight flight) throws FlightNotFoundException;
+	public ScheduledFlight updateFlightScheduleStatus(ScheduledFlight flight) throws FlightNotFoundException;
 	public List<ScheduledFlight> viewAllScheduledFlights();
 
 	public List<ScheduledFlight> viewAllScheduledFlightsByDate(LocalDate date) throws FlightNotFoundException;

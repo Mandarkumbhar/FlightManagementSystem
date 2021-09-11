@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.training.sprint1.entities.ScheduledFlight;
+import com.training.sprint1.entities.ScheduledStatus;
 import com.training.sprint1.exception.FlightNotFoundException;
 import com.training.sprint1.repository.IScheduledFlightRepository;
 
@@ -43,7 +44,8 @@ public class ScheduledFlightService implements IScheduledFlightService{
 		updatedScheduledFlight.setAvailableSeats(flight.getAvailableSeats());
 		updatedScheduledFlight.setFlight(flight.getFlight());
 		updatedScheduledFlight.setSchedule(flight.getSchedule());
-		
+		updatedScheduledFlight.setCost(flight.getCost());
+		updatedScheduledFlight.setScheduledStatus(flight.getScheduledStatus());
 		return flightRepository.save(updatedScheduledFlight);
 	}
 
@@ -72,6 +74,14 @@ public class ScheduledFlightService implements IScheduledFlightService{
 			throw new FlightNotFoundException();
 		}
 		return sList;
+	}
+
+	@Override
+	public ScheduledFlight updateFlightScheduleStatus(ScheduledFlight flight) throws FlightNotFoundException {
+		ScheduledFlight updatedScheduledFlight = flightRepository.findById(flight.getScheduledFlightIdLong()).orElseThrow(FlightNotFoundException :: new);
+		
+		updatedScheduledFlight.setScheduledStatus(ScheduledStatus.CANCELLED);
+		return flightRepository.save(updatedScheduledFlight);
 	}
 
 	
